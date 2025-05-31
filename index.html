@@ -1,0 +1,1081 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>My Portfolio</title>
+   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+   <link rel="stylesheet" href="css/style.css" />
+   <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+      * {
+         box-sizing: border-box;
+         padding: 0;
+         margin: 0;
+         font-family: "Poppins", sans-serif;
+         text-decoration: none;
+         list-style: none;
+      }
+
+      body {
+         background-color: #f7f7f2;
+         color: #1e1e24;
+         scroll-behavior: smooth;
+         /* fallback for smooth scroll */
+      }
+
+      body,
+      a,
+      button,
+      input,
+      textarea,
+      select,
+      * {
+         cursor: none !important;
+      }
+
+      header {
+         position: fixed;
+         width: 100%;
+         top: 0;
+         right: 0;
+         z-index: 1000;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 2rem 8rem;
+         background: #f7f7f2;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+         color: #1e1e24;
+         font-size: 1.2rem;
+         font-weight: 600;
+      }
+
+      .navmenu {
+         display: flex;
+      }
+
+      .navmenu a {
+         display: inline-block;
+         margin: 0 1.5rem;
+         color: #1e1e24;
+         font-weight: 500;
+         cursor: pointer;
+         transition: all 0.6s;
+      }
+
+      .navmenu a:hover {
+         transform: translateY(-5px);
+      }
+
+      section {
+         padding: 8rem 5rem 5rem;
+         min-height: 100vh;
+      }
+
+      .home {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         align-items: center;
+         padding: 2rem 5rem 0 18rem;
+         gap: 1rem;
+         height: 100vh;
+      }
+
+      .home-img {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         padding: 2rem 0;
+      }
+
+      .home-img img {
+         width: 350px;
+         height: 350px;
+         border-radius: 50%;
+         object-fit: cover;
+         border: 3px solid #1e1e24;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+
+      .home-text h2 {
+         font-size: 3rem;
+         margin-bottom: 1rem;
+      }
+
+      .home-text h3 {
+         position: relative;
+         padding-left: 6rem;
+         font-weight: 500;
+         margin-bottom: 1rem;
+      }
+
+      .home-text h3::before {
+         content: "";
+         position: absolute;
+         width: 80px;
+         height: 2px;
+         background-color: #1e1e24;
+         left: 0;
+         top: 1rem;
+      }
+
+      .home-text p {
+         margin-bottom: 2rem;
+      }
+
+      .btn {
+         display: inline-block;
+         width: fit-content;
+         padding: 1rem;
+         border-radius: 0.5rem;
+         cursor: pointer;
+         color: #f7f7f2;
+         border: 1px solid #1e1e24;
+         font-weight: 500;
+         font-size: 12px;
+         text-align: center;
+         background: #1e1e24;
+         transition: all 0.5s;
+      }
+
+      .btn:hover {
+         background: #f7f7f2;
+         color: #1e1e24;
+         transform: translateY(5px);
+      }
+
+      .socials-icons {
+         position: absolute;
+         top: 40%;
+         padding: 0 8rem;
+         left: 1rem;
+         z-index: 900;
+      }
+
+      .socials-icons a {
+         display: block;
+         margin: 25px 0;
+         color: #1e1e24;
+         font-size: 1.5rem;
+         transition: all 0.6s;
+      }
+
+      .socials-icons a:hover {
+         transform: rotate3d(0, 0, 1, 90deg);
+      }
+
+      .scroll-btn {
+         position: absolute;
+         bottom: 7%;
+         left: 9%;
+         color: #1e1e24;
+         font-weight: 600;
+         display: flex;
+         align-items: center;
+      }
+
+      /* Section Layout */
+      .about-section {
+         position: relative;
+         background: #f7f7f2;
+         padding: 8rem 5rem 5rem;
+         min-height: 100vh;
+         color: #1e1e24;
+         overflow: hidden;
+         opacity: 0;
+         transform: translateY(40px);
+         transition: all 1s ease-out;
+      }
+
+      .about-section.visible {
+         opacity: 1;
+         transform: translateY(0);
+      }
+
+      .about-section h2 {
+         font-size: 3rem;
+         margin-bottom: 1.5rem;
+         position: relative;
+         display: inline-block;
+      }
+
+      .about-section h2::before {
+         content: "";
+         position: absolute;
+         width: 80px;
+         height: 2px;
+         background-color: #1e1e24;
+         left: 0;
+         bottom: -10px;
+      }
+
+      .about-section p {
+         max-width: 700px;
+         line-height: 1.7;
+         font-size: 1.1rem;
+         font-weight: 400;
+      }
+
+      /* Floating Material Symbols */
+      .floating-icons {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         pointer-events: none;
+         z-index: 0;
+      }
+
+      .icon {
+         position: absolute;
+         font-size: 3.5rem;
+         color: rgba(30, 30, 36, 0.07);
+         animation: float 5s ease-in-out infinite;
+         z-index: -1;
+      }
+
+      .icon1 {
+         top: 15%;
+         left: 10%;
+         animation-delay: 0s;
+      }
+
+      .icon2 {
+         top: 40%;
+         left: 75%;
+         animation-delay: 1s;
+      }
+
+      .icon3 {
+         top: 70%;
+         left: 20%;
+         animation-delay: 2s;
+      }
+
+      .icon3 {
+         top: 70%;
+         left: 20%;
+         animation-delay: 2s;
+      }
+
+      @keyframes float {
+
+         0%,
+         100% {
+            transform: translateY(0);
+         }
+
+         50% {
+            transform: translateY(-15px);
+         }
+      }
+
+
+      /* Container */
+      .skills-section {
+         padding: 6rem 4rem 8rem;
+         background: linear-gradient(135deg, #f7f7f2, #eaeaea);
+         text-align: center;
+         font-family: 'Poppins', sans-serif;
+         color: #1e1e24;
+      }
+
+      .skills-section h2 {
+         font-size: 3.2rem;
+         margin-bottom: 3rem;
+         font-weight: 700;
+         letter-spacing: 1.2px;
+         position: relative;
+      }
+
+      .skills-section h2::after {
+         content: "";
+         position: absolute;
+         width: 100px;
+         height: 4px;
+         background: #1e1e24;
+         bottom: -15px;
+         left: 50%;
+         transform: translateX(-50%);
+         border-radius: 2px;
+      }
+
+      .skills-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 2.5rem;
+         max-width: 900px;
+         margin: 0 auto;
+      }
+
+      .skill-card {
+         background: rgba(255, 255, 255, 0.15);
+         border-radius: 1rem;
+         padding: 2rem 1.5rem;
+         box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.18);
+         backdrop-filter: blur(10px);
+         -webkit-backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         cursor: default;
+         transition: transform 0.4s ease, box-shadow 0.4s ease;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .skill-card:hover {
+         transform: translateY(-15px) scale(1.05);
+         box-shadow:
+            0 12px 40px 0 rgba(31, 38, 135, 0.3),
+            0 0 0 1.5px rgba(255, 255, 255, 0.3);
+      }
+
+      .skill-icon {
+         font-variation-settings: 'wght' 700, 'GRAD' 0, 'opsz' 48;
+         font-size: 60px;
+         color: #1e1e24;
+         margin-bottom: 1.3rem;
+         animation: floatIcon 3s ease-in-out infinite;
+         user-select: none;
+         transition: color 0.3s ease;
+      }
+
+      .skill-card:hover .skill-icon {
+         color: #0a84ff;
+         /* biru keren saat hover */
+         animation: floatIconHover 1.5s ease-in-out infinite;
+      }
+
+      .skill-card p {
+         font-size: 1.1rem;
+         font-weight: 600;
+         color: #1e1e24dd;
+         user-select: none;
+      }
+
+      @keyframes floatIcon {
+
+         0%,
+         100% {
+            transform: translateY(0);
+         }
+
+         50% {
+            transform: translateY(-10px);
+         }
+      }
+
+      @keyframes floatIconHover {
+
+         0%,
+         100% {
+            transform: translateY(0) rotate(5deg);
+         }
+
+         50% {
+            transform: translateY(-15px) rotate(-5deg);
+         }
+      }
+
+      @media (max-width: 600px) {
+         .skills-section {
+            padding: 4rem 1.5rem 6rem;
+         }
+
+         .skills-section h2 {
+            font-size: 2.4rem;
+         }
+
+         .skill-card {
+            padding: 1.5rem 1rem;
+         }
+
+         .skill-icon {
+            font-size: 48px;
+         }
+      }
+
+
+      .projects-section {
+         padding: 6rem 4rem 8rem;
+         background: linear-gradient(135deg, #f7f7f2, #eaeaea);
+         text-align: center;
+         font-family: 'Poppins', sans-serif;
+         color: #1e1e24;
+      }
+
+      .projects-section h2 {
+         font-size: 3.2rem;
+         margin-bottom: 3rem;
+         font-weight: 700;
+         letter-spacing: 1.2px;
+         position: relative;
+      }
+
+      .projects-section h2::after {
+         content: "";
+         position: absolute;
+         width: 100px;
+         height: 4px;
+         background: #1e1e24;
+         bottom: -15px;
+         left: 50%;
+         transform: translateX(-50%);
+         border-radius: 2px;
+      }
+
+      .projects-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+         gap: 2.5rem;
+         max-width: 1000px;
+         margin: 0 auto;
+      }
+
+      .project-card {
+         background: rgba(255, 255, 255, 0.15);
+         border-radius: 1rem;
+         overflow: hidden;
+         box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.18);
+         backdrop-filter: blur(10px);
+         -webkit-backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         cursor: default;
+         transition: transform 0.4s ease, box-shadow 0.4s ease;
+         text-align: left;
+         display: flex;
+         flex-direction: column;
+      }
+
+      .project-card:hover {
+         transform: translateY(-12px) scale(1.04);
+         box-shadow:
+            0 12px 40px 0 rgba(31, 38, 135, 0.3),
+            0 0 0 1.5px rgba(255, 255, 255, 0.3);
+      }
+
+      .project-card img {
+         width: 100%;
+         height: 180px;
+         object-fit: cover;
+         border-top-left-radius: 1rem;
+         border-top-right-radius: 1rem;
+      }
+
+      .project-info {
+         padding: 1.5rem 1.8rem 2rem;
+      }
+
+      .project-info h3 {
+         font-size: 1.8rem;
+         margin-bottom: 1rem;
+         color: #1e1e24;
+      }
+
+      .project-info p {
+         font-size: 1.1rem;
+         color: #1e1e24cc;
+         line-height: 1.5;
+      }
+
+      /* Fade-in animation */
+      .fade-in {
+         opacity: 0;
+         transform: translateY(40px);
+         animation-fill-mode: forwards;
+         animation-name: fadeInUp;
+         animation-duration: 1s;
+         animation-timing-function: ease-out;
+      }
+
+      .fade-in:nth-child(1) {
+         animation-delay: 0.2s;
+      }
+
+      .fade-in:nth-child(2) {
+         animation-delay: 0.4s;
+      }
+
+      .fade-in:nth-child(3) {
+         animation-delay: 0.6s;
+      }
+
+      @keyframes fadeInUp {
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      @media (max-width: 600px) {
+         .projects-section {
+            padding: 4rem 1.5rem 6rem;
+         }
+
+         .projects-section h2 {
+            font-size: 2.4rem;
+         }
+
+         .project-info h3 {
+            font-size: 1.5rem;
+         }
+
+         .project-card img {
+            height: 140px;
+         }
+      }
+
+
+      @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+      .contact-section {
+         padding: 6rem 4rem 8rem;
+         background: #f7f7f2;
+         text-align: center;
+         font-family: 'Poppins', sans-serif;
+         color: #1e1e24;
+      }
+
+      .contact-section h2 {
+         font-size: 3rem;
+         margin-bottom: 3rem;
+         font-weight: 700;
+         position: relative;
+      }
+
+      .contact-section h2::after {
+         content: "";
+         position: absolute;
+         width: 100px;
+         height: 4px;
+         background: #1e1e24;
+         bottom: -15px;
+         left: 50%;
+         transform: translateX(-50%);
+         border-radius: 2px;
+      }
+
+      .contact-cards {
+         max-width: 700px;
+         margin: 0 auto;
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 2rem;
+      }
+
+      .contact-card {
+         display: flex;
+         align-items: center;
+         background: rgba(255, 255, 255, 0.15);
+         border-radius: 1rem;
+         padding: 1.8rem 2rem;
+         box-shadow:
+            0 8px 32px 0 rgba(31, 38, 135, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.18);
+         backdrop-filter: blur(10px);
+         -webkit-backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         transition: box-shadow 0.3s ease, transform 0.3s ease;
+         cursor: default;
+         text-align: left;
+      }
+
+      .contact-card:hover {
+         box-shadow:
+            0 12px 40px 0 rgba(31, 38, 135, 0.3),
+            0 0 0 1.5px rgba(255, 255, 255, 0.3);
+         transform: translateY(-8px);
+      }
+
+      .contact-icon {
+         font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+         font-size: 3rem;
+         margin-right: 1.5rem;
+         color: #1e1e24;
+         flex-shrink: 0;
+      }
+
+      .contact-card h3 {
+         font-size: 1.4rem;
+         margin-bottom: 0.3rem;
+         color: #1e1e24;
+      }
+
+      .contact-card p,
+      .contact-card a {
+         font-size: 1.1rem;
+         color: #1e1e24cc;
+         text-decoration: none;
+         word-break: break-word;
+      }
+
+      .contact-card a:hover {
+         text-decoration: underline;
+         color: #1e1e24;
+      }
+
+      /* Fade-in animation */
+      .fade-in {
+         opacity: 0;
+         transform: translateY(40px);
+         animation-fill-mode: forwards;
+         animation-name: fadeInUp;
+         animation-duration: 0.9s;
+         animation-timing-function: ease-out;
+      }
+
+      .fade-in:nth-child(1) {
+         animation-delay: 0.2s;
+      }
+
+      .fade-in:nth-child(2) {
+         animation-delay: 0.4s;
+      }
+
+      .fade-in:nth-child(3) {
+         animation-delay: 0.6s;
+      }
+
+      .fade-in:nth-child(4) {
+         animation-delay: 0.8s;
+      }
+
+      @keyframes fadeInUp {
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      @media (max-width: 600px) {
+         .contact-section {
+            padding: 4rem 1.5rem 6rem;
+         }
+
+         .contact-section h2 {
+            font-size: 2.4rem;
+         }
+
+         .contact-icon {
+            font-size: 2.4rem;
+            margin-right: 1rem;
+         }
+
+         .contact-card h3 {
+            font-size: 1.2rem;
+         }
+      }
+
+
+      .profile-img {
+         width: 150px;
+         /* Atur ukuran kecil */
+         height: 150px;
+         /* Atur ukuran kecil */
+         border-radius: 50%;
+         /* Membuat gambar jadi bundar */
+         object-fit: cover;
+         /* Biar isi gambar tetap proporsional */
+         border: 3px solid #1e1e24;
+         /* Opsional: beri garis tepi */
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+         /* Opsional: beri bayangan */
+      }
+
+
+      @keyframes wave {
+         0% {
+            transform: rotate(0deg);
+         }
+
+         15% {
+            transform: rotate(14deg);
+         }
+
+         30% {
+            transform: rotate(-8deg);
+         }
+
+         40% {
+            transform: rotate(14deg);
+         }
+
+         50% {
+            transform: rotate(-4deg);
+         }
+
+         60% {
+            transform: rotate(10deg);
+         }
+
+         70% {
+            transform: rotate(0deg);
+         }
+
+         100% {
+            transform: rotate(0deg);
+         }
+      }
+
+      .waving-hand {
+         display: inline-block;
+         transform-origin: 70% 70%;
+         animation: wave 2s infinite;
+      }
+
+
+      .custom-cursor {
+         width: 15px;
+         height: 15px;
+         background-color: #000;
+         /* Warna cursor */
+         border-radius: 50%;
+         position: fixed;
+         pointer-events: none;
+         z-index: 9999;
+         transform: translate(-50%, -50%);
+         transition: transform 0.1s ease-out;
+      }
+
+      /* Spark effect */
+      .spark {
+         position: fixed;
+         width: 10px;
+         height: 10px;
+         background-color: #000;
+         border-radius: 50%;
+         pointer-events: none;
+         z-index: 9999;
+         animation: spark 0.6s ease-out forwards;
+      }
+
+      @keyframes spark {
+         0% {
+            transform: scale(1);
+            opacity: 1;
+         }
+
+         100% {
+            transform: scale(3);
+            opacity: 0;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <header>
+      <a href="#" class="logo">Syifaul Anam.</a>
+      <ul class="navmenu">
+         <li><a href="#home">Home</a></li>
+         <li><a href="#about">About</a></li>
+         <li><a href="#skills">Skills</a></li>
+         <li><a href="#projects">Projects</a></li>
+         <li><a href="#contact">Contact</a></li>
+      </ul>
+   </header>
+
+   <section id="home" class="home">
+      <div class="home-text">
+         <h2>Hello I'm Faul <i class="ph-bold ph-hand-waving waving-hand"></i></h2>
+         <h3>Mahasiswa Informatika</h3>
+         <p>I'm Mahasiswa based in Sidoarjo,
+            and i'm very passionate and dedicated to my work.</p>
+         <div class="home-btn">
+            <a href="#contact" class="btn">Contact Info</a>
+            <a href="M SYIFAUL ANAM (CV-ATS) (1).pdf" download class="btn">Download CV <i
+                  class="ph ph-read-cv-logo"></i></a>
+         </div>
+         <div class="socials-icons">
+            <a href="https://www.instagram.com/faulnam_/profilecard/?igsh=MWFzbXd0Z2YyejF1Mg=="><i
+                  class="ph-bold ph-instagram-logo"></i></a>
+            <a
+               href="https://www.linkedin.com/in/faul-nam-646965259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                  class="ph-bold ph-linkedin-logo"></i></a>
+            <a href="https://github.com/faulnam"><i class="ph-bold ph-github-logo"></i></a>
+         </div>
+      </div>
+      <div class="home-img">
+         <img src="profil.jpeg" class="profile-img" />
+      </div>
+
+   </section>
+
+   <!-- HTML -->
+   <section id="about" class="about-section">
+      <!-- Material Symbols Floating Background -->
+      <div class="floating-icons">
+         <span class="material-symbols-outlined icon icon1">code</span>
+         <span class="material-symbols-outlined icon icon2">lightbulb</span>
+         <span class="material-symbols-outlined icon icon3">brush</span>
+      </div>
+
+      <!-- About Content -->
+      <h2>About Me</h2>
+      <p>
+         I'm <strong>Syifaul Anam</strong>, an Informatics student based in Sidoarjo. I'm passionate about
+         <strong>front-end development</strong> and user
+         interface design. With a strong interest in creating responsive, accessible, and interactive web applications,
+         I strive to build clean, efficient code and engaging digital experiences.
+      </p>
+   </section>
+
+
+
+   <section id="skills" class="skills-section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">code</span>
+            <p>HTML5, CSS3, JavaScript</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">widgets</span>
+            <p>React.js & Vue.js</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">cloud</span>
+            <p>Git & GitHub</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">style</span>
+            <p>Bootstrap & Tailwind</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">design_services</span>
+            <p>Figma</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">brush</span>
+            <p>Canva</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">edit</span>
+            <p>CorelDRAW</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">movie</span>
+            <p>CapCut</p>
+         </div>
+         <div class="skill-card">
+            <span class="material-symbols-outlined skill-icon">extension</span>
+            <p>Construct</p>
+         </div>
+      </div>
+   </section>
+
+   <section id="projects" class="projects-section">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+         <div class="project-card fade-in">
+            <img src="porto.png" alt="Portfolio Website" />
+            <div class="project-info">
+               <h3>Personal Portfolio</h3>
+               <p>Website pribadi untuk menampilkan profil, keterampilan, dan proyek secara interaktif dan responsif.
+               </p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="Web onlin.png" alt="E-commerce Website" />
+            <div class="project-info">
+               <h3>E-Commerce Platform</h3>
+               <p>Membangun platform e-commerce full-stack menggunakan React dan Node.js dengan fitur cart & pembayaran.
+               </p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="Blog.png" alt="Blog Platform" />
+            <div class="project-info">
+               <h3>Blog Platform</h3>
+               <p>Sistem manajemen konten blog posting</p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="game.png" alt="Game Edukasi" />
+            <div class="project-info">
+               <h3>Game Edukasi Hijaiyah</h3>
+               <p>Dibuat dengan Construct 2, game interaktif untuk anak-anak belajar huruf hijaiyah secara menyenangkan.
+               </p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="SI.png" alt="Sistem Absensi" />
+            <div class="project-info">
+               <h3>Sistem Absensi Karyawan</h3>
+               <p>Aplikasi absensi berbasis web untuk monitoring kehadiran karyawan secara efisien.</p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="sms.png" alt="Social Media Growth" />
+            <div class="project-info">
+               <h3>Social Media Growth</h3>
+               <p>Membangun akun TikTok dan mencapai 1000+ pengikut dalam waktu kurang dari 2 bulan secara organik.</p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="uiux.png" alt="UI/UX Design" />
+            <div class="project-info">
+               <h3>UI/UX Design</h3>
+               <p>Mendesain antarmuka user-friendly untuk berbagai aplikasi menggunakan Figma dan prinsip UX modern.</p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="web3.png" alt="Blog Sosial Media" />
+            <div class="project-info">
+               <h3>Blog Sosial Media</h3>
+               <p>Platform blog yang membahas strategi, tren, dan konten seputar media sosial dan digital branding.</p>
+            </div>
+         </div>
+
+         <div class="project-card fade-in">
+            <img src="design.png" alt="Canva Design" />
+            <div class="project-info">
+               <h3>Desain Konten Canva</h3>
+               <p>Membuat berbagai konten visual menarik seperti poster, feed Instagram, dan presentasi profesional.</p>
+            </div>
+         </div>
+      </div>
+
+   </section>
+
+   <section id="contact" class="contact-section">
+      <h2>Contact</h2>
+      <div class="contact-cards">
+         <div class="contact-card fade-in">
+            <span class="material-symbols-outlined contact-icon">email</span>
+            <div>
+               <h3>Email</h3>
+               <p>syifaul.anm@gmail.com</p>
+            </div>
+         </div>
+         <div class="contact-card fade-in">
+            <span class="material-symbols-outlined contact-icon">phone</span>
+            <div>
+               <h3>Phone</h3>
+               <p>+62 8591 7168 1988</p>
+            </div>
+         </div>
+         <div class="contact-card fade-in">
+            <span class="material-symbols-outlined contact-icon">code</span>
+            <div>
+               <h3>LinkedIn</h3>
+               <a href="#" target="_blank">https://www.linkedin.com/in/faul-nam-646965259/</a>
+            </div>
+         </div>
+         <div class="contact-card fade-in">
+            <span class="material-symbols-outlined contact-icon">code</span>
+            <div>
+               <h3>GitHub</h3>
+               <a href="#" target="_blank">https://github.com/faulnam</a>
+            </div>
+         </div>
+      </div>
+   </section>
+   <a href="#about" class="scroll-btn">Scroll down
+      <i class="ph-bold ph-arrow-bend-right-down"></i>
+   </a>
+
+   <script>
+      // Smooth scroll for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+         anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetID = this.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetID);
+            if (targetSection) {
+               window.scrollTo({
+                  top: targetSection.offsetTop - 80, // offset for fixed header
+                  behavior: "smooth",
+               });
+            }
+         });
+      });
+
+
+
+      const aboutSection = document.querySelector('.about-section');
+
+      const revealOnScroll = () => {
+         const triggerBottom = window.innerHeight * 0.85;
+         const sectionTop = aboutSection.getBoundingClientRect().top;
+
+         if (sectionTop < triggerBottom) {
+            aboutSection.classList.add('visible');
+         }
+      };
+
+      window.addEventListener('scroll', revealOnScroll);
+      window.addEventListener('load', revealOnScroll); // Trigger on load too
+
+
+
+      const skillsSection = document.querySelector('.skills-section');
+
+      function showSkillsOnScroll() {
+         const triggerBottom = window.innerHeight * 0.85;
+         const sectionTop = skillsSection.getBoundingClientRect().top;
+
+         if (sectionTop < triggerBottom) {
+            skillsSection.classList.add('visible');
+         }
+      }
+
+      window.addEventListener('scroll', showSkillsOnScroll);
+      window.addEventListener('load', showSkillsOnScroll);
+
+
+      // Buat cursor custom
+      const cursor = document.createElement('div');
+      cursor.classList.add('custom-cursor');
+      document.body.appendChild(cursor);
+
+      // Gerakkan cursor
+      document.addEventListener('mousemove', e => {
+         cursor.style.left = e.clientX + 'px';
+         cursor.style.top = e.clientY + 'px';
+      });
+
+      // Percikan saat klik
+      document.addEventListener('click', e => {
+         for (let i = 0; i < 5; i++) {
+            const spark = document.createElement('div');
+            spark.classList.add('spark');
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            document.body.appendChild(spark);
+
+            // Random arah percikan
+            const angle = Math.random() * 360;
+            const distance = 30 + Math.random() * 20;
+            spark.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(1)`;
+
+            // Hapus spark setelah selesai
+            setTimeout(() => {
+               spark.remove();
+            }, 600);
+         }
+      });
+   </script>
+</body>
+
+</html>
