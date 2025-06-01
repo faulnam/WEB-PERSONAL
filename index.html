@@ -6,774 +6,7 @@
    <title>My Portfolio</title>
    <script src="https://unpkg.com/@phosphor-icons/web"></script>
    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-   <link rel="stylesheet" href="css/style.css" />
-   <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
-      * {
-         box-sizing: border-box;
-         padding: 0;
-         margin: 0;
-         font-family: "Poppins", sans-serif;
-         text-decoration: none;
-         list-style: none;
-      }
-
-      body {
-         background-color: #f7f7f2;
-         color: #1e1e24;
-         scroll-behavior: smooth;
-         /* fallback for smooth scroll */
-      }
-
-      body,
-      a,
-      button,
-      input,
-      textarea,
-      select,
-      * {
-         cursor: none !important;
-      }
-
-      header {
-         position: fixed;
-         width: 100%;
-         top: 0;
-         right: 0;
-         z-index: 1000;
-         display: flex;
-         align-items: center;
-         justify-content: space-between;
-         padding: 2rem 8rem;
-         background: #f7f7f2;
-         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .logo {
-         color: #1e1e24;
-         font-size: 1.2rem;
-         font-weight: 600;
-      }
-
-      .navmenu {
-         display: flex;
-      }
-
-      .navmenu a {
-         display: inline-block;
-         margin: 0 1.5rem;
-         color: #1e1e24;
-         font-weight: 500;
-         cursor: pointer;
-         transition: all 0.6s;
-      }
-
-      .navmenu a:hover {
-         transform: translateY(-5px);
-      }
-
-      section {
-         padding: 8rem 5rem 5rem;
-         min-height: 100vh;
-      }
-
-      .home {
-         display: grid;
-         grid-template-columns: repeat(2, 1fr);
-         align-items: center;
-         padding: 2rem 5rem 0 18rem;
-         gap: 1rem;
-         height: 100vh;
-      }
-
-      .home-img {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         padding: 2rem 0;
-      }
-
-      .home-img img {
-         width: 350px;
-         height: 350px;
-         border-radius: 50%;
-         object-fit: cover;
-         border: 3px solid #1e1e24;
-         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-
-
-      .home-text h2 {
-         font-size: 3rem;
-         margin-bottom: 1rem;
-      }
-
-      .home-text h3 {
-         position: relative;
-         padding-left: 6rem;
-         font-weight: 500;
-         margin-bottom: 1rem;
-      }
-
-      .home-text h3::before {
-         content: "";
-         position: absolute;
-         width: 80px;
-         height: 2px;
-         background-color: #1e1e24;
-         left: 0;
-         top: 1rem;
-      }
-
-      .home-text p {
-         margin-bottom: 2rem;
-      }
-
-      .btn {
-         display: inline-block;
-         width: fit-content;
-         padding: 1rem;
-         border-radius: 0.5rem;
-         cursor: pointer;
-         color: #f7f7f2;
-         border: 1px solid #1e1e24;
-         font-weight: 500;
-         font-size: 12px;
-         text-align: center;
-         background: #1e1e24;
-         transition: all 0.5s;
-      }
-
-      .btn:hover {
-         background: #f7f7f2;
-         color: #1e1e24;
-         transform: translateY(5px);
-      }
-
-      .socials-icons {
-         position: absolute;
-         top: 40%;
-         padding: 0 8rem;
-         left: 1rem;
-         z-index: 900;
-      }
-
-      .socials-icons a {
-         display: block;
-         margin: 25px 0;
-         color: #1e1e24;
-         font-size: 1.5rem;
-         transition: all 0.6s;
-      }
-
-      .socials-icons a:hover {
-         transform: rotate3d(0, 0, 1, 90deg);
-      }
-
-      .scroll-btn {
-         position: absolute;
-         bottom: 7%;
-         left: 9%;
-         color: #1e1e24;
-         font-weight: 600;
-         display: flex;
-         align-items: center;
-      }
-
-      /* Section Layout */
-      .about-section {
-         position: relative;
-         background: #f7f7f2;
-         padding: 8rem 5rem 5rem;
-         min-height: 100vh;
-         color: #1e1e24;
-         overflow: hidden;
-         opacity: 0;
-         transform: translateY(40px);
-         transition: all 1s ease-out;
-      }
-
-      .about-section.visible {
-         opacity: 1;
-         transform: translateY(0);
-      }
-
-      .about-section h2 {
-         font-size: 3rem;
-         margin-bottom: 1.5rem;
-         position: relative;
-         display: inline-block;
-      }
-
-      .about-section h2::before {
-         content: "";
-         position: absolute;
-         width: 80px;
-         height: 2px;
-         background-color: #1e1e24;
-         left: 0;
-         bottom: -10px;
-      }
-
-      .about-section p {
-         max-width: 700px;
-         line-height: 1.7;
-         font-size: 1.1rem;
-         font-weight: 400;
-      }
-
-      /* Floating Material Symbols */
-      .floating-icons {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;
-         height: 100%;
-         pointer-events: none;
-         z-index: 0;
-      }
-
-      .icon {
-         position: absolute;
-         font-size: 3.5rem;
-         color: rgba(30, 30, 36, 0.07);
-         animation: float 5s ease-in-out infinite;
-         z-index: -1;
-      }
-
-      .icon1 {
-         top: 15%;
-         left: 10%;
-         animation-delay: 0s;
-      }
-
-      .icon2 {
-         top: 40%;
-         left: 75%;
-         animation-delay: 1s;
-      }
-
-      .icon3 {
-         top: 70%;
-         left: 20%;
-         animation-delay: 2s;
-      }
-
-      .icon3 {
-         top: 70%;
-         left: 20%;
-         animation-delay: 2s;
-      }
-
-      @keyframes float {
-
-         0%,
-         100% {
-            transform: translateY(0);
-         }
-
-         50% {
-            transform: translateY(-15px);
-         }
-      }
-
-
-      /* Container */
-      .skills-section {
-         padding: 6rem 4rem 8rem;
-         background: linear-gradient(135deg, #f7f7f2, #eaeaea);
-         text-align: center;
-         font-family: 'Poppins', sans-serif;
-         color: #1e1e24;
-      }
-
-      .skills-section h2 {
-         font-size: 3.2rem;
-         margin-bottom: 3rem;
-         font-weight: 700;
-         letter-spacing: 1.2px;
-         position: relative;
-      }
-
-      .skills-section h2::after {
-         content: "";
-         position: absolute;
-         width: 100px;
-         height: 4px;
-         background: #1e1e24;
-         bottom: -15px;
-         left: 50%;
-         transform: translateX(-50%);
-         border-radius: 2px;
-      }
-
-      .skills-grid {
-         display: grid;
-         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-         gap: 2.5rem;
-         max-width: 900px;
-         margin: 0 auto;
-      }
-
-      .skill-card {
-         background: rgba(255, 255, 255, 0.15);
-         border-radius: 1rem;
-         padding: 2rem 1.5rem;
-         box-shadow:
-            0 8px 32px 0 rgba(31, 38, 135, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.18);
-         backdrop-filter: blur(10px);
-         -webkit-backdrop-filter: blur(10px);
-         border: 1px solid rgba(255, 255, 255, 0.3);
-         cursor: default;
-         transition: transform 0.4s ease, box-shadow 0.4s ease;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-      }
-
-      .skill-card:hover {
-         transform: translateY(-15px) scale(1.05);
-         box-shadow:
-            0 12px 40px 0 rgba(31, 38, 135, 0.3),
-            0 0 0 1.5px rgba(255, 255, 255, 0.3);
-      }
-
-      .skill-icon {
-         font-variation-settings: 'wght' 700, 'GRAD' 0, 'opsz' 48;
-         font-size: 60px;
-         color: #1e1e24;
-         margin-bottom: 1.3rem;
-         animation: floatIcon 3s ease-in-out infinite;
-         user-select: none;
-         transition: color 0.3s ease;
-      }
-
-      .skill-card:hover .skill-icon {
-         color: #0a84ff;
-         /* biru keren saat hover */
-         animation: floatIconHover 1.5s ease-in-out infinite;
-      }
-
-      .skill-card p {
-         font-size: 1.1rem;
-         font-weight: 600;
-         color: #1e1e24dd;
-         user-select: none;
-      }
-
-      @keyframes floatIcon {
-
-         0%,
-         100% {
-            transform: translateY(0);
-         }
-
-         50% {
-            transform: translateY(-10px);
-         }
-      }
-
-      @keyframes floatIconHover {
-
-         0%,
-         100% {
-            transform: translateY(0) rotate(5deg);
-         }
-
-         50% {
-            transform: translateY(-15px) rotate(-5deg);
-         }
-      }
-
-      @media (max-width: 600px) {
-         .skills-section {
-            padding: 4rem 1.5rem 6rem;
-         }
-
-         .skills-section h2 {
-            font-size: 2.4rem;
-         }
-
-         .skill-card {
-            padding: 1.5rem 1rem;
-         }
-
-         .skill-icon {
-            font-size: 48px;
-         }
-      }
-
-
-      .projects-section {
-         padding: 6rem 4rem 8rem;
-         background: linear-gradient(135deg, #f7f7f2, #eaeaea);
-         text-align: center;
-         font-family: 'Poppins', sans-serif;
-         color: #1e1e24;
-      }
-
-      .projects-section h2 {
-         font-size: 3.2rem;
-         margin-bottom: 3rem;
-         font-weight: 700;
-         letter-spacing: 1.2px;
-         position: relative;
-      }
-
-      .projects-section h2::after {
-         content: "";
-         position: absolute;
-         width: 100px;
-         height: 4px;
-         background: #1e1e24;
-         bottom: -15px;
-         left: 50%;
-         transform: translateX(-50%);
-         border-radius: 2px;
-      }
-
-      .projects-grid {
-         display: grid;
-         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-         gap: 2.5rem;
-         max-width: 1000px;
-         margin: 0 auto;
-      }
-
-      .project-card {
-         background: rgba(255, 255, 255, 0.15);
-         border-radius: 1rem;
-         overflow: hidden;
-         box-shadow:
-            0 8px 32px 0 rgba(31, 38, 135, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.18);
-         backdrop-filter: blur(10px);
-         -webkit-backdrop-filter: blur(10px);
-         border: 1px solid rgba(255, 255, 255, 0.3);
-         cursor: default;
-         transition: transform 0.4s ease, box-shadow 0.4s ease;
-         text-align: left;
-         display: flex;
-         flex-direction: column;
-      }
-
-      .project-card:hover {
-         transform: translateY(-12px) scale(1.04);
-         box-shadow:
-            0 12px 40px 0 rgba(31, 38, 135, 0.3),
-            0 0 0 1.5px rgba(255, 255, 255, 0.3);
-      }
-
-      .project-card img {
-         width: 100%;
-         height: 180px;
-         object-fit: cover;
-         border-top-left-radius: 1rem;
-         border-top-right-radius: 1rem;
-      }
-
-      .project-info {
-         padding: 1.5rem 1.8rem 2rem;
-      }
-
-      .project-info h3 {
-         font-size: 1.8rem;
-         margin-bottom: 1rem;
-         color: #1e1e24;
-      }
-
-      .project-info p {
-         font-size: 1.1rem;
-         color: #1e1e24cc;
-         line-height: 1.5;
-      }
-
-      /* Fade-in animation */
-      .fade-in {
-         opacity: 0;
-         transform: translateY(40px);
-         animation-fill-mode: forwards;
-         animation-name: fadeInUp;
-         animation-duration: 1s;
-         animation-timing-function: ease-out;
-      }
-
-      .fade-in:nth-child(1) {
-         animation-delay: 0.2s;
-      }
-
-      .fade-in:nth-child(2) {
-         animation-delay: 0.4s;
-      }
-
-      .fade-in:nth-child(3) {
-         animation-delay: 0.6s;
-      }
-
-      @keyframes fadeInUp {
-         to {
-            opacity: 1;
-            transform: translateY(0);
-         }
-      }
-
-      @media (max-width: 600px) {
-         .projects-section {
-            padding: 4rem 1.5rem 6rem;
-         }
-
-         .projects-section h2 {
-            font-size: 2.4rem;
-         }
-
-         .project-info h3 {
-            font-size: 1.5rem;
-         }
-
-         .project-card img {
-            height: 140px;
-         }
-      }
-
-
-      @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
-
-      .contact-section {
-         padding: 6rem 4rem 8rem;
-         background: #f7f7f2;
-         text-align: center;
-         font-family: 'Poppins', sans-serif;
-         color: #1e1e24;
-      }
-
-      .contact-section h2 {
-         font-size: 3rem;
-         margin-bottom: 3rem;
-         font-weight: 700;
-         position: relative;
-      }
-
-      .contact-section h2::after {
-         content: "";
-         position: absolute;
-         width: 100px;
-         height: 4px;
-         background: #1e1e24;
-         bottom: -15px;
-         left: 50%;
-         transform: translateX(-50%);
-         border-radius: 2px;
-      }
-
-      .contact-cards {
-         max-width: 700px;
-         margin: 0 auto;
-         display: grid;
-         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-         gap: 2rem;
-      }
-
-      .contact-card {
-         display: flex;
-         align-items: center;
-         background: rgba(255, 255, 255, 0.15);
-         border-radius: 1rem;
-         padding: 1.8rem 2rem;
-         box-shadow:
-            0 8px 32px 0 rgba(31, 38, 135, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.18);
-         backdrop-filter: blur(10px);
-         -webkit-backdrop-filter: blur(10px);
-         border: 1px solid rgba(255, 255, 255, 0.3);
-         transition: box-shadow 0.3s ease, transform 0.3s ease;
-         cursor: default;
-         text-align: left;
-      }
-
-      .contact-card:hover {
-         box-shadow:
-            0 12px 40px 0 rgba(31, 38, 135, 0.3),
-            0 0 0 1.5px rgba(255, 255, 255, 0.3);
-         transform: translateY(-8px);
-      }
-
-      .contact-icon {
-         font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;
-         font-size: 3rem;
-         margin-right: 1.5rem;
-         color: #1e1e24;
-         flex-shrink: 0;
-      }
-
-      .contact-card h3 {
-         font-size: 1.4rem;
-         margin-bottom: 0.3rem;
-         color: #1e1e24;
-      }
-
-      .contact-card p,
-      .contact-card a {
-         font-size: 1.1rem;
-         color: #1e1e24cc;
-         text-decoration: none;
-         word-break: break-word;
-      }
-
-      .contact-card a:hover {
-         text-decoration: underline;
-         color: #1e1e24;
-      }
-
-      /* Fade-in animation */
-      .fade-in {
-         opacity: 0;
-         transform: translateY(40px);
-         animation-fill-mode: forwards;
-         animation-name: fadeInUp;
-         animation-duration: 0.9s;
-         animation-timing-function: ease-out;
-      }
-
-      .fade-in:nth-child(1) {
-         animation-delay: 0.2s;
-      }
-
-      .fade-in:nth-child(2) {
-         animation-delay: 0.4s;
-      }
-
-      .fade-in:nth-child(3) {
-         animation-delay: 0.6s;
-      }
-
-      .fade-in:nth-child(4) {
-         animation-delay: 0.8s;
-      }
-
-      @keyframes fadeInUp {
-         to {
-            opacity: 1;
-            transform: translateY(0);
-         }
-      }
-
-      @media (max-width: 600px) {
-         .contact-section {
-            padding: 4rem 1.5rem 6rem;
-         }
-
-         .contact-section h2 {
-            font-size: 2.4rem;
-         }
-
-         .contact-icon {
-            font-size: 2.4rem;
-            margin-right: 1rem;
-         }
-
-         .contact-card h3 {
-            font-size: 1.2rem;
-         }
-      }
-
-
-      .profile-img {
-         width: 150px;
-         /* Atur ukuran kecil */
-         height: 150px;
-         /* Atur ukuran kecil */
-         border-radius: 50%;
-         /* Membuat gambar jadi bundar */
-         object-fit: cover;
-         /* Biar isi gambar tetap proporsional */
-         border: 3px solid #1e1e24;
-         /* Opsional: beri garis tepi */
-         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-         /* Opsional: beri bayangan */
-      }
-
-
-      @keyframes wave {
-         0% {
-            transform: rotate(0deg);
-         }
-
-         15% {
-            transform: rotate(14deg);
-         }
-
-         30% {
-            transform: rotate(-8deg);
-         }
-
-         40% {
-            transform: rotate(14deg);
-         }
-
-         50% {
-            transform: rotate(-4deg);
-         }
-
-         60% {
-            transform: rotate(10deg);
-         }
-
-         70% {
-            transform: rotate(0deg);
-         }
-
-         100% {
-            transform: rotate(0deg);
-         }
-      }
-
-      .waving-hand {
-         display: inline-block;
-         transform-origin: 70% 70%;
-         animation: wave 2s infinite;
-      }
-
-
-      .custom-cursor {
-         width: 15px;
-         height: 15px;
-         background-color: #000;
-         /* Warna cursor */
-         border-radius: 50%;
-         position: fixed;
-         pointer-events: none;
-         z-index: 9999;
-         transform: translate(-50%, -50%);
-         transition: transform 0.1s ease-out;
-      }
-
-      /* Spark effect */
-      .spark {
-         position: fixed;
-         width: 10px;
-         height: 10px;
-         background-color: #000;
-         border-radius: 50%;
-         pointer-events: none;
-         z-index: 9999;
-         animation: spark 0.6s ease-out forwards;
-      }
-
-      @keyframes spark {
-         0% {
-            transform: scale(1);
-            opacity: 1;
-         }
-
-         100% {
-            transform: scale(3);
-            opacity: 0;
-         }
-      }
-   </style>
+   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body>
@@ -878,85 +111,101 @@
    </section>
 
    <section id="projects" class="projects-section">
-      <h2>Projects</h2>
+      <h2>My Projects</h2><br>
       <div class="projects-grid">
-         <div class="project-card fade-in">
+         <div class="project-card">
             <img src="porto.png" alt="Portfolio Website" />
             <div class="project-info">
-               <h3>Personal Portfolio</h3>
-               <p>Website pribadi untuk menampilkan profil, keterampilan, dan proyek secara interaktif dan responsif.
-               </p>
+               <h3>Personal Portfolio Website</h3>
+               <p>An interactive and responsive personal website built to showcase my profile, skills, and recent
+                  projects.</p>
             </div>
          </div>
 
-         <div class="project-card fade-in">
-            <img src="Web onlin.png" alt="E-commerce Website" />
+         <div class="project-card">
+            <img src="Web onlin.png" alt="E-commerce Platform" />
             <div class="project-info">
-               <h3>E-Commerce Platform</h3>
-               <p>Membangun platform e-commerce full-stack menggunakan React dan Node.js dengan fitur cart & pembayaran.
-               </p>
+               <h3>Modern E-Commerce Platform</h3>
+               <p>A full-stack online store developed with React and Node.js featuring product management and secure
+                  checkout.</p>
             </div>
          </div>
 
-         <div class="project-card fade-in">
+         <div class="project-card">
             <img src="Blog.png" alt="Blog Platform" />
             <div class="project-info">
-               <h3>Blog Platform</h3>
-               <p>Sistem manajemen konten blog posting</p>
-            </div>
-         </div>
-
-         <div class="project-card fade-in">
-            <img src="game.png" alt="Game Edukasi" />
-            <div class="project-info">
-               <h3>Game Edukasi Hijaiyah</h3>
-               <p>Dibuat dengan Construct 2, game interaktif untuk anak-anak belajar huruf hijaiyah secara menyenangkan.
+               <h3>Dynamic Blog Platform</h3>
+               <p>A CMS-based blog site with user authentication, real-time commenting, and rich text editing features.
                </p>
             </div>
          </div>
 
-         <div class="project-card fade-in">
-            <img src="SI.png" alt="Sistem Absensi" />
-            <div class="project-info">
-               <h3>Sistem Absensi Karyawan</h3>
-               <p>Aplikasi absensi berbasis web untuk monitoring kehadiran karyawan secara efisien.</p>
-            </div>
-         </div>
-
-         <div class="project-card fade-in">
-            <img src="sms.png" alt="Social Media Growth" />
-            <div class="project-info">
-               <h3>Social Media Growth</h3>
-               <p>Membangun akun TikTok dan mencapai 1000+ pengikut dalam waktu kurang dari 2 bulan secara organik.</p>
-            </div>
-         </div>
-
-         <div class="project-card fade-in">
-            <img src="uiux.png" alt="UI/UX Design" />
-            <div class="project-info">
-               <h3>UI/UX Design</h3>
-               <p>Mendesain antarmuka user-friendly untuk berbagai aplikasi menggunakan Figma dan prinsip UX modern.</p>
-            </div>
-         </div>
-
-         <div class="project-card fade-in">
-            <img src="web3.png" alt="Blog Sosial Media" />
-            <div class="project-info">
-               <h3>Blog Sosial Media</h3>
-               <p>Platform blog yang membahas strategi, tren, dan konten seputar media sosial dan digital branding.</p>
-            </div>
-         </div>
-
-         <div class="project-card fade-in">
+         <div class="project-card">
             <img src="design.png" alt="Canva Design" />
             <div class="project-info">
-               <h3>Desain Konten Canva</h3>
-               <p>Membuat berbagai konten visual menarik seperti poster, feed Instagram, dan presentasi profesional.</p>
+               <h3>Creative Canva Designs</h3>
+               <p>A collection of professional design templates and marketing visuals crafted using Canva for digital
+                  campaigns.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="game.png" alt="Educational Game" />
+            <div class="project-info">
+               <h3>Educational Game - Hijaiyah</h3>
+               <p>An interactive Arabic learning game developed using Construct 3, designed to teach children Hijaiyah
+                  letters.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="SI.png" alt="Attendance System" />
+            <div class="project-info">
+               <h3>Employee Attendance System</h3>
+               <p>A web-based attendance information system to manage employee presence and generate daily reports
+                  efficiently.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="sms.png" alt="Social Media Specialist" />
+            <div class="project-info">
+               <h3>Social Media Growth Strategy</h3>
+               <p>Successfully grew a TikTok account to 1K+ followers in under 2 months through targeted content and
+                  analytics.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="uiux.png" alt="UI/UX Design Project" />
+            <div class="project-info">
+               <h3>UI/UX Design Case Study</h3>
+               <p>A comprehensive UI/UX design for a mobile and web platform using Figma, focusing on usability and user
+                  flow.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="web.png" alt="Online Store" />
+            <div class="project-info">
+               <h3>Online Store Prototype</h3>
+               <p>A responsive web prototype designed for online retail, including cart system and product display
+                  pages.</p>
+            </div>
+         </div>
+
+         <div class="project-card">
+            <img src="web3.png" alt="Social Web Blog" />
+            <div class="project-info">
+               <h3>Social Blog Website</h3>
+               <p>A social-themed blog platform designed for community sharing and discussion, featuring tags and
+                  filters.</p>
             </div>
          </div>
       </div>
-
    </section>
+
+
 
    <section id="contact" class="contact-section">
       <h2>Contact</h2>
@@ -994,7 +243,6 @@
    <a href="#about" class="scroll-btn">Scroll down
       <i class="ph-bold ph-arrow-bend-right-down"></i>
    </a>
-
    <script>
       // Smooth scroll for all anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1075,6 +323,18 @@
             }, 600);
          }
       });
+
+
+      document.querySelectorAll('.project-card').forEach(card => {
+         card.addEventListener('click', () => {
+            // Optional: remove 'active' from other cards
+            document.querySelectorAll('.project-card').forEach(c => c !== card && c.classList.remove('active'));
+
+            card.classList.toggle('active');
+         });
+      });
+
+
    </script>
 </body>
 
